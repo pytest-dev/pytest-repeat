@@ -37,12 +37,12 @@ To install pytest-repeat::
 Repeating a test
 ----------------
 
-Use the `--count` command line option to specify how many times you want
+Use the :code:`--count` command line option to specify how many times you want
 your test, or tests, to be run::
 
   py.test --count=10 test_file.py
 
-Each test collected by py.test will be run `count` times.
+Each test collected by py.test will be run :code:`count` times.
 
 Resources
 ---------
