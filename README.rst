@@ -4,7 +4,7 @@ pytest-repeat
 pytest-repeat is a plugin for `py.test <http://pytest.org>`_ that makes it easy
 to repeat a single test, or multiple tests, a specific number of times.
 
-.. image:: https://img.shields.io/pypi/l/pytest-repeat.svg
+.. image:: https://img.shields.io/badge/license-MPL%202.0-blue.svg
    :target: https://github.com/bobsilverberg/pytest-repeat/blob/master/LICENSE
    :alt: License
 .. image:: https://img.shields.io/pypi/v/pytest-repeat.svg
@@ -43,6 +43,19 @@ your test, or tests, to be run::
   py.test --count=10 test_file.py
 
 Each test collected by py.test will be run :code:`count` times.
+
+Repeating a test until failure
+------------------------------
+
+If you are trying to diagnose an intermittent failure, it can be useful to run the same
+test over and over again until it fails. You can use py.test's :code:`-x` option in
+conjunction with pytest-repeat to force the test runner to stop at the first failure.
+For example::
+
+  py.test --count=1000 -x test_file.py
+
+This will attempt to run test_file.py 1000 times, but will stop as soon as a failure
+occurs.
 
 Resources
 ---------
