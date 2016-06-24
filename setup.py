@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pytest-repeat',
-      version='0.2',
+      version='0.3',
       description='pytest plugin for repeating tests',
       long_description=open('README.rst').read(),
       author='Bob Silverberg',

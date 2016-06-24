@@ -25,6 +25,22 @@ class TestRepeat:
         result.stdout.fnmatch_lines(['*2 passed*'])
         assert result.ret == 0
 
+    def test_can_repeat_parameterized_test(self, testdir):
+        testdir.makepyfile("""
+            import pytest
+
+            @pytest.fixture(scope="function", params=["one", "two", "three"])
+            def fixture_with_params(request):
+                return request.param
+
+            def test_that_is_parametrized(request, fixture_with_params):
+                pass
+        """)
+        result = testdir.runpytest('--count', '2', '--collectonly')
+        result.stdout.fnmatch_lines(['*one-0*', '*one-1*', '*two-0*',
+                                     '*two-1*', '*three-0*', '*three-1*'])
+        assert result.ret == 0
+
     def test_invalid_option(self, testdir):
         testdir.makepyfile("""
             def test_repeat():
