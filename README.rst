@@ -57,6 +57,12 @@ For example::
 This will attempt to run test_file.py 1000 times, but will stop as soon as a failure
 occurs.
 
+UnitTest Style Tests
+--------------------
+
+Unfortunately pytest-repeat is not able to work with unittest.TestCase test classes.
+These tests will simply always run once, regardless of `--count`, and show a warning.
+
 Resources
 ---------
 
