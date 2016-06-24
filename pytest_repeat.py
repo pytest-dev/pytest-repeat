@@ -15,5 +15,5 @@ def pytest_addoption(parser):
 def pytest_generate_tests(metafunc):
     count = metafunc.config.option.count
     if count > 1:
-        for i in range(count):
-            metafunc.addcall()
+        metafunc.fixturenames.append('tmp_ct')
+        metafunc.parametrize('tmp_ct', range(count))
