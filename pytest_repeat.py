@@ -10,7 +10,7 @@ def pytest_addoption(parser):
     parser.addoption(
         '--count',
         action='store',
-        default='1',
+        default=1,
         type='int',
         help='Number of times to repeat each test')
 
@@ -37,11 +37,11 @@ def pytest_generate_tests(metafunc):
     if count > 1:
 
         def make_progress_id(i, n=count):
-            return '{}/{}'.format(i + 1, n)
+            return '{0}/{1}'.format(i + 1, n)
 
         metafunc.parametrize(
             '__pytest_repeat_step_number',
             range(count),
             indirect=True,
-            ids=make_progress_id
+            ids=[make_progress_id(i) for i in range(count)]
         )

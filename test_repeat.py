@@ -14,7 +14,7 @@ class TestRepeat:
         """)
         result = testdir.runpytest('-v', '--count', '1')
         result.stdout.fnmatch_lines([
-            '*test_no_repeat.py::test_no_repeat PASSED*',
+            '*test_no_repeat.py:*:*test_no_repeat PASSED*',
             '*1 passed*',
         ])
         assert result.ret == 0
@@ -64,11 +64,11 @@ class TestRepeat:
         """)
         result = testdir.runpytest('-v', '--count', '5')
         result.stdout.fnmatch_lines([
-            '*test_step_number.py::test_repeat?1/5? PASSED*',
-            '*test_step_number.py::test_repeat?2/5? PASSED*',
-            '*test_step_number.py::test_repeat?3/5? PASSED*',
-            '*test_step_number.py::test_repeat?4/5? PASSED*',
-            '*test_step_number.py::test_repeat?5/5? PASSED*',
+            '*test_step_number.py:*:*test_repeat[[]1/5[]] PASSED*',
+            '*test_step_number.py:*:*test_repeat[[]2/5[]] PASSED*',
+            '*test_step_number.py:*:*test_repeat[[]3/5[]] PASSED*',
+            '*test_step_number.py:*:*test_repeat[[]4/5[]] PASSED*',
+            '*test_step_number.py:*:*test_repeat[[]5/5[]] PASSED*',
             '*5 passed*',
         ])
         assert result.ret == 0
@@ -91,6 +91,6 @@ class TestRepeat:
         """)
         result = testdir.runpytest('-v', '--count', '2')
         result.stdout.fnmatch_lines([
-            '*test_unittest_test.py::ClassStyleTest::test_this PASSED*',
+            '*test_unittest_test.py:*:*ClassStyleTest*test_this PASSED*',
             '*1 passed*',
         ])
