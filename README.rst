@@ -30,17 +30,21 @@ You will need the following prerequisites in order to use pytest-repeat:
 
 Installation
 ------------
-To install pytest-repeat::
+To install pytest-repeat:
 
-  pip install pytest-repeat
+.. code-block:: bash
+
+  $ pip install pytest-repeat
 
 Repeating a test
 ----------------
 
 Use the :code:`--count` command line option to specify how many times you want
-your test, or tests, to be run::
+your test, or tests, to be run:
 
-  py.test --count=10 test_file.py
+.. code-block:: bash
+
+  $ py.test --count=10 test_file.py
 
 Each test collected by py.test will be run :code:`count` times.
 
@@ -50,9 +54,11 @@ Repeating a test until failure
 If you are trying to diagnose an intermittent failure, it can be useful to run the same
 test over and over again until it fails. You can use py.test's :code:`-x` option in
 conjunction with pytest-repeat to force the test runner to stop at the first failure.
-For example::
+For example:
 
-  py.test --count=1000 -x test_file.py
+.. code-block:: bash
+
+  $ py.test --count=1000 -x test_file.py
 
 This will attempt to run test_file.py 1000 times, but will stop as soon as a failure
 occurs.
@@ -61,7 +67,7 @@ UnitTest Style Tests
 --------------------
 
 Unfortunately pytest-repeat is not able to work with unittest.TestCase test classes.
-These tests will simply always run once, regardless of `--count`, and show a warning.
+These tests will simply always run once, regardless of :code:`--count`, and show a warning.
 
 Resources
 ---------
