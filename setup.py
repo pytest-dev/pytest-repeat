@@ -11,7 +11,7 @@ setup(name='pytest-repeat',
       entry_points={'pytest11': ['repeat = pytest_repeat']},
       install_requires=['pytest>=2.4.2'],
       license='Mozilla Public License 2.0 (MPL 2.0)',
-      keywords='py.test pytest json variables',
+      keywords='py.test pytest repeat',
       classifiers=[
           'Development Status :: 4 - Beta',
           'Intended Audience :: Developers',
