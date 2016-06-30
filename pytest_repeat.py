@@ -6,6 +6,7 @@ from unittest import TestCase
 
 import pytest
 
+
 def pytest_addoption(parser):
     parser.addoption(
         '--count',
@@ -14,8 +15,10 @@ def pytest_addoption(parser):
         type='int',
         help='Number of times to repeat each test')
 
+
 class UnexpectedError(Exception):
     pass
+
 
 @pytest.fixture(autouse=True)
 def __pytest_repeat_step_number(request):
