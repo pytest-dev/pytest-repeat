@@ -5,19 +5,19 @@ pytest-repeat is a plugin for `py.test <http://pytest.org>`_ that makes it easy
 to repeat a single test, or multiple tests, a specific number of times.
 
 .. image:: https://img.shields.io/badge/license-MPL%202.0-blue.svg
-   :target: https://github.com/bobsilverberg/pytest-repeat/blob/master/LICENSE
+   :target: https://github.com/pytest-dev/pytest-repeat/blob/master/LICENSE
    :alt: License
 .. image:: https://img.shields.io/pypi/v/pytest-repeat.svg
    :target: https://pypi.python.org/pypi/pytest-repeat/
    :alt: PyPI
-.. image:: https://img.shields.io/travis/bobsilverberg/pytest-repeat.svg
-   :target: https://travis-ci.org/bobsilverberg/pytest-repeat/
+.. image:: https://img.shields.io/travis/pytest-dev/pytest-repeat.svg
+   :target: https://travis-ci.org/pytest-dev/pytest-repeat/
    :alt: Travis
-.. image:: https://img.shields.io/github/issues-raw/bobsilverberg/pytest-repeat.svg
-   :target: https://github.com/bobsilverberg/pytest-repeat/issues
+.. image:: https://img.shields.io/github/issues-raw/pytest-dev/pytest-repeat.svg
+   :target: https://github.com/pytest-dev/pytest-repeat/issues
    :alt: Issues
-.. image:: https://img.shields.io/requires/github/bobsilverberg/pytest-repeat.svg
-   :target: https://requires.io/github/bobsilverberg/pytest-repeat/requirements/?branch=master
+.. image:: https://img.shields.io/requires/github/pytest-dev/pytest-repeat.svg
+   :target: https://requires.io/github/pytest-dev/pytest-repeat/requirements/?branch=master
    :alt: Requirements
 
 Requirements
@@ -66,5 +66,5 @@ These tests will simply always run once, regardless of `--count`, and show a war
 Resources
 ---------
 
-- `Issue Tracker <http://github.com/bobsilverberg/pytest-repeat/issues>`_
-- `Code <http://github.com/bobsilverberg/pytest-repeat/>`_
+- `Issue Tracker <http://github.com/pytest-dev/pytest-repeat/issues>`_
+- `Code <http://github.com/pytest-dev/pytest-repeat/>`_
