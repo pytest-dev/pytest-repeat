@@ -13,7 +13,7 @@ setup(name='pytest-repeat',
       license='Mozilla Public License 2.0 (MPL 2.0)',
       keywords='py.test pytest repeat',
       classifiers=[
-          'Development Status :: 4 - Beta',
+          'Development Status :: 5 - Production/Stable',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
           'Operating System :: POSIX',
