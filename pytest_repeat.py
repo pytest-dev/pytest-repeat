@@ -6,6 +6,13 @@ from unittest import TestCase
 
 import pytest
 
+try:
+    import unittest2
+except ImportError:
+    UNITTEST_TESTCASE_BASES = (TestCase, )
+else:
+    UNITTEST_TESTCASE_BASES = (TestCase, unittest2.TestCase)
+
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -26,7 +33,7 @@ def __pytest_repeat_step_number(request):
         try:
             return request.param
         except AttributeError:
-            if issubclass(request.cls, TestCase):
+            if issubclass(request.cls, UNITTEST_TESTCASE_BASES):
                 warnings.warn(
                     "Repeating unittest class tests not supported")
             else:

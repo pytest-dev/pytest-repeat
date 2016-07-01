@@ -2,6 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import pytest
+
+try:
+    import unittest2
+except ImportError:
+    unittest2 = None
+
 pytest_plugins = "pytester",
 
 
@@ -92,5 +99,20 @@ class TestRepeat:
         result = testdir.runpytest('-v', '--count', '2')
         result.stdout.fnmatch_lines([
             '*test_unittest_test.py:*:*ClassStyleTest*test_this PASSED*',
+            '*1 passed*',
+        ])
+
+    @pytest.mark.skipif(not unittest2, reason="requires unittest2")
+    def test_unittest2_test(self, testdir):
+        testdir.makepyfile("""
+            from unittest2 import TestCase
+
+            class ClassStyleTest(TestCase):
+                def test_this(self):
+                    assert 1
+        """)
+        result = testdir.runpytest('-v', '--count', '2')
+        result.stdout.fnmatch_lines([
+            '*test_unittest2_test.py:*:*ClassStyleTest*test_this PASSED*',
             '*1 passed*',
         ])
