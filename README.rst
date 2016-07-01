@@ -72,5 +72,6 @@ These tests will simply always run once, regardless of :code:`--count`, and show
 Resources
 ---------
 
+- `Release Notes <http://github.com/pytest-dev/pytest-repeat/blob/master/CHANGES.rst>`_
 - `Issue Tracker <http://github.com/pytest-dev/pytest-repeat/issues>`_
 - `Code <http://github.com/pytest-dev/pytest-repeat/>`_
