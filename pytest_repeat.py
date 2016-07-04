@@ -46,5 +46,5 @@ def pytest_generate_tests(metafunc):
             '__pytest_repeat_step_number',
             range(count),
             indirect=True,
-            ids=[make_progress_id(i) for i in range(count)]
+            ids=make_progress_id,
         )

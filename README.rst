@@ -26,7 +26,7 @@ Requirements
 You will need the following prerequisites in order to use pytest-repeat:
 
 - Python 2.6, 2.7, 3.2, 3.3, 3.4, 3.5 or PyPy
-- py.test 2.4 or newer
+- py.test 2.8 or newer
 
 Installation
 ------------
