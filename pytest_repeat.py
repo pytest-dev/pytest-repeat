@@ -12,7 +12,7 @@ def pytest_addoption(parser):
         '--count',
         action='store',
         default=1,
-        type='int',
+        type=int,
         help='Number of times to repeat each test')
 
 
