@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='pytest-repeat',
-      version='0.4.0',
+      use_scm_version=True,
       description='pytest plugin for repeating tests',
       long_description=open('README.rst').read(),
       author='Bob Silverberg',
@@ -9,6 +9,7 @@ setup(name='pytest-repeat',
       url='https://github.com/pytest-dev/pytest-repeat',
       py_modules=['pytest_repeat'],
       entry_points={'pytest11': ['repeat = pytest_repeat']},
+      setup_requires=['setuptools_scm'],
       install_requires=['pytest>=2.8.7'],
       license='Mozilla Public License 2.0 (MPL 2.0)',
       keywords='py.test pytest repeat',
