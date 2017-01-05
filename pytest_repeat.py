@@ -36,7 +36,22 @@ def __pytest_repeat_step_number(request):
 
 
 def pytest_generate_tests(metafunc):
+    """
+    Use command line option or test case decorator "repeat" to configure number of time each test case is repeated
+    Sample decorator: @pytest.mark.repeat(2)
+    :param metafunc: Metafunc objects are passed to the pytest_generate_tests
+    hook. They help to inspect a test function and to generate tests
+    according to test configuration or values specified in the class
+    or module where a test
+    function is defined.
+    :return:
+    """
     count = metafunc.config.option.count
+    if hasattr(metafunc.function, 'repeat'):
+        mark = metafunc.function.repeat
+        if len(mark.args) > 0 and isinstance(mark.args[0], int):
+            count = metafunc.function.repeat.args[0]
+
     if count > 1:
 
         def make_progress_id(i, n=count):
