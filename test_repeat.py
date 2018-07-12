@@ -28,6 +28,23 @@ class TestRepeat:
         result.stdout.fnmatch_lines(['*2 passed*'])
         assert result.ret == 0
 
+    def test_mark_repeat_decorator_is_registered(self, testdir):
+        result = testdir.runpytest('--markers')
+        result.stdout.fnmatch_lines([
+            '@pytest.mark.repeat(n): run the given test function `n` times.'])
+        assert result.ret == 0
+
+    def test_mark_repeat_decorator(self, testdir):
+        testdir.makepyfile("""
+            import pytest
+            @pytest.mark.repeat(3)
+            def test_mark_repeat_decorator():
+                pass
+        """)
+        result = testdir.runpytest()
+        result.stdout.fnmatch_lines(['*3 passed*'])
+        assert result.ret == 0
+
     def test_parametrize(self, testdir):
         testdir.makepyfile("""
             import pytest

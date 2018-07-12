@@ -48,6 +48,18 @@ your test, or tests, to be run:
 
 Each test collected by py.test will be run :code:`count` times.
 
+If you want to mark a test in your code to be repeated a number of times, you
+can use the :code:`@pytest.mark.repeat(count)` decorator:
+
+.. code-block:: python
+
+   import pytest
+
+
+   @pytest.mark.repeat(3)
+   def test_repeat_decorator():
+       pass
+
 Repeating a test until failure
 ------------------------------
 
