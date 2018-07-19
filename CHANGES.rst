@@ -1,6 +1,13 @@
 Release Notes
 -------------
 
+**0.5.0 (2018-07-19)**
+
+* Allow repeating a test using a decorator  (`#16 <https://github.com/pytest-dev/pytest-repeat/issues/16>`_)
+
+  * Thanks to `@Peque <https://github.com/Peque>`_ for suggesting
+    this enhancement and providing a patch
+
 **0.4.0 (2016-08-25)**
 
 * No changes - testing deploy to PyPI from Travis CI
