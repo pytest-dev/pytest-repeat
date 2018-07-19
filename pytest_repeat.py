@@ -16,6 +16,12 @@ def pytest_addoption(parser):
         help='Number of times to repeat each test')
 
 
+def pytest_configure(config):
+    config.addinivalue_line(
+        'markers',
+        'repeat(n): run the given test function `n` times.')
+
+
 class UnexpectedError(Exception):
     pass
 
@@ -37,6 +43,8 @@ def __pytest_repeat_step_number(request):
 
 def pytest_generate_tests(metafunc):
     count = metafunc.config.option.count
+    if hasattr(metafunc.function, 'repeat'):
+        count = int(metafunc.function.repeat.args[0])
     if count > 1:
 
         def make_progress_id(i, n=count):
