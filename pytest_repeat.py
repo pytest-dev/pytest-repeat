@@ -15,6 +15,14 @@ def pytest_addoption(parser):
         type=int,
         help='Number of times to repeat each test')
 
+    parser.addoption(
+        '--repeat-scope',
+        action='store',
+        default='function',
+        type=str,
+        choices=('function', 'class', 'module', 'session'),
+        help='Scope for repeating tests')
+
 
 def pytest_configure(config):
     config.addinivalue_line(
@@ -50,9 +58,11 @@ def pytest_generate_tests(metafunc):
         def make_progress_id(i, n=count):
             return '{0}/{1}'.format(i + 1, n)
 
+        scope = metafunc.config.option.repeat_scope
         metafunc.parametrize(
             '__pytest_repeat_step_number',
             range(count),
             indirect=True,
             ids=make_progress_id,
+            scope=scope
         )
