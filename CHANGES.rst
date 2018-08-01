@@ -1,6 +1,13 @@
 Release Notes
 -------------
 
+**0.6.0 (2018-08-01)**
+
+* Add option for controlling the scope of the repeat parameterisation
+
+* Thanks to `@gdyuldin <https://github.com/gdyuldin>`_ for suggesting
+  this enhancement and providing a patch
+
 **0.5.0 (2018-07-19)**
 
 * Allow repeating a test using a decorator  (`#16 <https://github.com/pytest-dev/pytest-repeat/issues/16>`_)
