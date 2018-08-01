@@ -5,8 +5,8 @@ Release Notes
 
 * Add option for controlling the scope of the repeat parameterisation
 
-* Thanks to `@gdyuldin <https://github.com/gdyuldin>`_ for suggesting
-  this enhancement and providing a patch
+  * Thanks to `@gdyuldin <https://github.com/gdyuldin>`_ for suggesting
+    this enhancement and providing a patch
 
 **0.5.0 (2018-07-19)**
 
