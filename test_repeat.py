@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import pytest
+
 pytest_plugins = "pytester",
 
 
@@ -111,3 +113,139 @@ class TestRepeat:
             '*test_unittest_test.py::ClassStyleTest::test_this PASSED*',
             '*1 passed*',
         ])
+
+    @pytest.mark.parametrize(['scope', 'lines'], [
+        ('session', [
+            '*test_1.py::test_repeat1[[]1/2[]] PASSED*',
+            '*test_1.py::test_repeat2[[]1/2[]] PASSED*',
+            '*test_2.py::test_repeat3[[]1/2[]] PASSED*',
+            '*test_2.py::test_repeat4[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat5[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat6[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat7[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat8[[]1/2[]] PASSED*',
+            '*test_1.py::test_repeat1[[]2/2[]] PASSED*',
+            '*test_1.py::test_repeat2[[]2/2[]] PASSED*',
+            '*test_2.py::test_repeat3[[]2/2[]] PASSED*',
+            '*test_2.py::test_repeat4[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat5[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat6[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat7[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat8[[]2/2[]] PASSED*',
+            '*16 passed*',
+        ]),
+        ('module', [
+            '*test_1.py::test_repeat1[[]1/2[]] PASSED*',
+            '*test_1.py::test_repeat2[[]1/2[]] PASSED*',
+            '*test_1.py::test_repeat1[[]2/2[]] PASSED*',
+            '*test_1.py::test_repeat2[[]2/2[]] PASSED*',
+            '*test_2.py::test_repeat3[[]1/2[]] PASSED*',
+            '*test_2.py::test_repeat4[[]1/2[]] PASSED*',
+            '*test_2.py::test_repeat3[[]2/2[]] PASSED*',
+            '*test_2.py::test_repeat4[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat5[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat6[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat7[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat8[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat5[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat6[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat7[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat8[[]2/2[]] PASSED*',
+            '*16 passed*',
+        ]),
+        ('class', [
+            '*test_1.py::test_repeat1[[]1/2[]] PASSED*',
+            '*test_1.py::test_repeat2[[]1/2[]] PASSED*',
+            '*test_1.py::test_repeat1[[]2/2[]] PASSED*',
+            '*test_1.py::test_repeat2[[]2/2[]] PASSED*',
+            '*test_2.py::test_repeat3[[]1/2[]] PASSED*',
+            '*test_2.py::test_repeat4[[]1/2[]] PASSED*',
+            '*test_2.py::test_repeat3[[]2/2[]] PASSED*',
+            '*test_2.py::test_repeat4[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat5[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat6[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat5[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat6[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat7[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat8[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat7[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat8[[]2/2[]] PASSED*',
+            '*16 passed*',
+        ]),
+        ('function', [
+            '*test_1.py::test_repeat1[[]1/2[]] PASSED*',
+            '*test_1.py::test_repeat1[[]2/2[]] PASSED*',
+            '*test_1.py::test_repeat2[[]1/2[]] PASSED*',
+            '*test_1.py::test_repeat2[[]2/2[]] PASSED*',
+            '*test_2.py::test_repeat3[[]1/2[]] PASSED*',
+            '*test_2.py::test_repeat3[[]2/2[]] PASSED*',
+            '*test_2.py::test_repeat4[[]1/2[]] PASSED*',
+            '*test_2.py::test_repeat4[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat5[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat5[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat6[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat1::test_repeat6[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat7[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat7[[]2/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat8[[]1/2[]] PASSED*',
+            '*test_3.py::TestRepeat2::test_repeat8[[]2/2[]] PASSED*',
+            '*16 passed*',
+        ]),
+    ])
+    def test_scope(self, testdir, scope, lines):
+        testdir.makepyfile(test_1="""
+            def test_repeat1():
+                pass
+
+            def test_repeat2():
+                pass
+        """)
+        testdir.makepyfile(test_2="""
+            def test_repeat3():
+                pass
+
+            def test_repeat4():
+                pass
+        """)
+        testdir.makepyfile(test_3="""
+            class TestRepeat1(object):
+                def test_repeat5(self):
+                    pass
+                def test_repeat6(self):
+                    pass
+            class TestRepeat2(object):
+                def test_repeat7(self):
+                    pass
+                def test_repeat8(self):
+                    pass
+        """)
+        result = testdir.runpytest('-v', '--count', '2', '--repeat-scope',
+                                   scope)
+        result.stdout.fnmatch_lines(lines)
+        assert result.ret == 0
+
+    def test_omitted_scope(self, testdir):
+        testdir.makepyfile("""
+            def test_repeat1():
+                pass
+
+            def test_repeat2():
+                pass
+        """)
+        result = testdir.runpytest('-v', '--count', '2')
+        result.stdout.fnmatch_lines([
+            '*test_omitted_scope.py::test_repeat1[[]1/2[]] PASSED*',
+            '*test_omitted_scope.py::test_repeat1[[]2/2[]] PASSED*',
+            '*test_omitted_scope.py::test_repeat2[[]1/2[]] PASSED*',
+            '*test_omitted_scope.py::test_repeat2[[]2/2[]] PASSED*',
+            '*4 passed*',
+        ])
+        assert result.ret == 0
+
+    def test_invalid_scope(self, testdir):
+        testdir.makepyfile("""
+            def test_repeat():
+                pass
+        """)
+        result = testdir.runpytest('--count', '2', '--repeat-scope', 'a')
+        assert result.ret == 2

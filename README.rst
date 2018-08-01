@@ -60,11 +60,19 @@ can use the :code:`@pytest.mark.repeat(count)` decorator:
    def test_repeat_decorator():
        pass
 
+If you want to override default tests executions order, you can use :code:`--repeat-scope`
+command line option with one of the next values: :code:`session`,  :code:`module`, :code:`class` or :code:`function` (default).
+It behaves like a scope of the pytest fixture.
+
+:code:`function` (default) scope repeats each test :code:`count` or :code:`repeat` times before executing next test.
+:code:`session` scope repeats whole tests session, i.e. all collected tests executed once, then all such tests executed again and etc.
+:code:`class` and :code:`module` behaves similar :code:`session` , but repeating set of tests is a tests from class or module, not all collected tests.
+
 Repeating a test until failure
 ------------------------------
 
 If you are trying to diagnose an intermittent failure, it can be useful to run the same
-test over and over again until it fails. You can use py.test's :code:`-x` option in
+test over and over again until it fails. You can use pytest's :code:`-x` option in
 conjunction with pytest-repeat to force the test runner to stop at the first failure.
 For example:
 
