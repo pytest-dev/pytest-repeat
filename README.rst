@@ -1,8 +1,8 @@
 pytest-repeat
 ===================
 
-pytest-repeat is a plugin for `py.test <http://pytest.org>`_ that makes it easy
-to repeat a single test, or multiple tests, a specific number of times.
+pytest-repeat is a plugin for `py.test <https://docs.pytest.org>`_ that makes it
+easy to repeat a single test, or multiple tests, a specific number of times.
 
 .. image:: https://img.shields.io/badge/license-MPL%202.0-blue.svg
    :target: https://github.com/pytest-dev/pytest-repeat/blob/master/LICENSE
@@ -92,6 +92,6 @@ These tests will simply always run once, regardless of :code:`--count`, and show
 Resources
 ---------
 
-- `Release Notes <http://github.com/pytest-dev/pytest-repeat/blob/master/CHANGES.rst>`_
-- `Issue Tracker <http://github.com/pytest-dev/pytest-repeat/issues>`_
-- `Code <http://github.com/pytest-dev/pytest-repeat/>`_
+- `Release Notes <https://github.com/pytest-dev/pytest-repeat/blob/master/CHANGES.rst>`_
+- `Issue Tracker <https://github.com/pytest-dev/pytest-repeat/issues>`_
+- `Code <https://github.com/pytest-dev/pytest-repeat/>`_
