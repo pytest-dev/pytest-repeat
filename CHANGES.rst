@@ -1,6 +1,13 @@
 Release Notes
 -------------
 
+**0.7.0 (2018-08-23)**
+
+* Move step number to the end of the parametrisation ID
+
+  * Thanks to `@gdyuldin <https://github.com/gdyuldin>`_ for suggesting
+    this enhancement and providing a patch
+
 **0.6.0 (2018-08-01)**
 
 * Add option for controlling the scope of the repeat parameterisation
