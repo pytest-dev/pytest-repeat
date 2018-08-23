@@ -54,8 +54,16 @@ class TestRepeat:
             def test_repeat(x):
                 pass
         """)
-        result = testdir.runpytest('--count', '2')
-        result.stdout.fnmatch_lines(['*6 passed*'])
+        result = testdir.runpytest('-v', '--count', '2')
+        result.stdout.fnmatch_lines([
+            '*test_parametrize.py::test_repeat[[]a-1/2[]] PASSED*',
+            '*test_parametrize.py::test_repeat[[]a-2/2[]] PASSED*',
+            '*test_parametrize.py::test_repeat[[]b-1/2[]] PASSED*',
+            '*test_parametrize.py::test_repeat[[]b-2/2[]] PASSED*',
+            '*test_parametrize.py::test_repeat[[]c-1/2[]] PASSED*',
+            '*test_parametrize.py::test_repeat[[]c-2/2[]] PASSED*',
+            '*6 passed*',
+        ])
         assert result.ret == 0
 
     def test_parametrized_fixture(self, testdir):

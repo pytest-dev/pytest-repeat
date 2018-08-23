@@ -49,6 +49,7 @@ def __pytest_repeat_step_number(request):
                     "Please consider raising an issue with your usage.")
 
 
+@pytest.hookimpl(trylast=True)
 def pytest_generate_tests(metafunc):
     count = metafunc.config.option.count
     if hasattr(metafunc.function, 'repeat'):
