@@ -57,7 +57,7 @@ def pytest_generate_tests(metafunc):
     if count > 1:
 
         def make_progress_id(i, n=count):
-            return '{0}/{1}'.format(i + 1, n)
+            return '{0}-{1}'.format(i + 1, n)
 
         scope = metafunc.config.option.repeat_scope
         metafunc.parametrize(
