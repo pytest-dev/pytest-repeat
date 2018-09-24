@@ -106,7 +106,7 @@ class TestRepeat:
                 pass
         """)
         result = testdir.runpytest('--count', 'a')
-        assert result.ret == 2
+        assert result.ret == 4
 
     def test_unittest_test(self, testdir):
         testdir.makepyfile("""
@@ -256,4 +256,4 @@ class TestRepeat:
                 pass
         """)
         result = testdir.runpytest('--count', '2', '--repeat-scope', 'a')
-        assert result.ret == 2
+        assert result.ret == 4
