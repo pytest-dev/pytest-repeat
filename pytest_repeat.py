@@ -36,7 +36,11 @@ class UnexpectedError(Exception):
 
 @pytest.fixture(autouse=True)
 def __pytest_repeat_step_number(request):
-    if request.config.option.count > 1:
+    count = request.config.option.count
+    if hasattr(request.function, 'repeat'):
+        count = int(request.function.repeat.args[0])
+    if count > 1:
+
         try:
             return request.param
         except AttributeError:
