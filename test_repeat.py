@@ -47,6 +47,17 @@ class TestRepeat:
         result.stdout.fnmatch_lines(['*3 passed*'])
         assert result.ret == 0
 
+    def test_mark_repeat_decorator_repeat_once(self, testdir):
+        testdir.makepyfile("""
+            import pytest
+            @pytest.mark.repeat(1)
+            def test_mark_repeat_decorator_repeat_once():
+                pass
+        """)
+        result = testdir.runpytest('--count', '10')
+        result.stdout.fnmatch_lines(['*1 passed*'])
+        assert result.ret == 0
+
     def test_parametrize(self, testdir):
         testdir.makepyfile("""
             import pytest
