@@ -52,8 +52,9 @@ def __pytest_repeat_step_number(request):
 @pytest.hookimpl(trylast=True)
 def pytest_generate_tests(metafunc):
     count = metafunc.config.option.count
-    if hasattr(metafunc.function, 'repeat'):
-        count = int(metafunc.function.repeat.args[0])
+    m = metafunc.definition.get_closest_marker('repeat')
+    if m is not None:
+        count = int(m.args[0])
     if count > 1:
 
         def make_progress_id(i, n=count):
