@@ -1,6 +1,12 @@
 Release Notes
 -------------
 
+**Unreleased**
+
+* Fix mark deprecation warnings in new pytest versions.
+
+* ``pytest-repeat`` now requires pytest>=3.6.
+
 **0.7.0 (2018-08-23)**
 
 * Move step number to the end of the parametrisation ID
