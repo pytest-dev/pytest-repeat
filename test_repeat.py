@@ -11,8 +11,9 @@ class TestRepeat:
 
     def test_no_repeat(self, testdir):
         testdir.makepyfile("""
-            def test_no_repeat():
-                pass
+            def test_no_repeat(request):
+                fixtures = request.fixturenames
+                assert "__pytest_repeat_step_number" not in fixtures
         """)
         result = testdir.runpytest('-v', '--count', '1')
         result.stdout.fnmatch_lines([
