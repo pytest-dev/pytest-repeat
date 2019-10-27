@@ -34,19 +34,18 @@ class UnexpectedError(Exception):
     pass
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture
 def __pytest_repeat_step_number(request):
-    if request.config.option.count > 1:
-        try:
-            return request.param
-        except AttributeError:
-            if issubclass(request.cls, TestCase):
-                warnings.warn(
-                    "Repeating unittest class tests not supported")
-            else:
-                raise UnexpectedError(
-                    "This call couldn't work with pytest-repeat. "
-                    "Please consider raising an issue with your usage.")
+    try:
+        return request.param
+    except AttributeError:
+        if issubclass(request.cls, TestCase):
+            warnings.warn(
+                "Repeating unittest class tests not supported")
+        else:
+            raise UnexpectedError(
+                "This call couldn't work with pytest-repeat. "
+                "Please consider raising an issue with your usage.")
 
 
 @pytest.hookimpl(trylast=True)
@@ -56,6 +55,7 @@ def pytest_generate_tests(metafunc):
     if m is not None:
         count = int(m.args[0])
     if count > 1:
+        metafunc.fixturenames.append("__pytest_repeat_step_number")
 
         def make_progress_id(i, n=count):
             return '{0}-{1}'.format(i + 1, n)
