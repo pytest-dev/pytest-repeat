@@ -1,7 +1,7 @@
 Release Notes
 -------------
 
-**Unreleased**
+**0.8.0 (2019-02-26)**
 
 * Fix mark deprecation warnings in new pytest versions.
 

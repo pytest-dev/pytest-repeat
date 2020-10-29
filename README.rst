@@ -1,7 +1,7 @@
 pytest-repeat
 ===================
 
-pytest-repeat is a plugin for `py.test <https://docs.pytest.org>`_ that makes it
+pytest-repeat is a plugin for `pytest <https://docs.pytest.org>`_ that makes it
 easy to repeat a single test, or multiple tests, a specific number of times.
 
 .. image:: https://img.shields.io/badge/license-MPL%202.0-blue.svg
@@ -26,7 +26,7 @@ Requirements
 You will need the following prerequisites in order to use pytest-repeat:
 
 - Python 2.7, 3.4+ or PyPy
-- py.test 2.8 or newer
+- pytest 2.8 or newer
 
 Installation
 ------------
@@ -44,9 +44,9 @@ your test, or tests, to be run:
 
 .. code-block:: bash
 
-  $ py.test --count=10 test_file.py
+  $ pytest --count=10 test_file.py
 
-Each test collected by py.test will be run :code:`count` times.
+Each test collected by pytest will be run :code:`count` times.
 
 If you want to mark a test in your code to be repeated a number of times, you
 can use the :code:`@pytest.mark.repeat(count)` decorator:
@@ -78,7 +78,7 @@ For example:
 
 .. code-block:: bash
 
-  $ py.test --count=1000 -x test_file.py
+  $ pytest --count=1000 -x test_file.py
 
 This will attempt to run test_file.py 1000 times, but will stop as soon as a failure
 occurs.

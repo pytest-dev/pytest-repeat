@@ -12,7 +12,7 @@ setup(name='pytest-repeat',
       setup_requires=['setuptools_scm'],
       install_requires=['pytest>=3.6'],
       license='Mozilla Public License 2.0 (MPL 2.0)',
-      keywords='py.test pytest repeat',
+      keywords='pytest pytest repeat',
       classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Framework :: Pytest',
