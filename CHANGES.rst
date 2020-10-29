@@ -1,6 +1,10 @@
 Release Notes
 -------------
 
+**0.9.0 (UNRELEASED)**
+
+* Using ``@pytest.mark.repeat(1)`` can now be used to disable repeating a test regardless of the ``--count`` parameter given in the command-line.
+
 **0.8.0 (2019-02-26)**
 
 * Fix mark deprecation warnings in new pytest versions.
