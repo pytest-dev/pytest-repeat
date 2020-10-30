@@ -36,16 +36,19 @@ class UnexpectedError(Exception):
 
 @pytest.fixture
 def __pytest_repeat_step_number(request):
-    try:
-        return request.param
-    except AttributeError:
-        if issubclass(request.cls, TestCase):
-            warnings.warn(
-                "Repeating unittest class tests not supported")
-        else:
-            raise UnexpectedError(
-                "This call couldn't work with pytest-repeat. "
-                "Please consider raising an issue with your usage.")
+    marker = request.node.get_closest_marker("repeat")
+    count = marker and marker.args[0] or request.config.option.count
+    if count > 1:
+        try:
+            return request.param
+        except AttributeError:
+            if issubclass(request.cls, TestCase):
+                warnings.warn(
+                    "Repeating unittest class tests not supported")
+            else:
+                raise UnexpectedError(
+                    "This call couldn't work with pytest-repeat. "
+                    "Please consider raising an issue with your usage.")
 
 
 @pytest.hookimpl(trylast=True)
