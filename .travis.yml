@@ -1,21 +1,48 @@
 language: python
-python:
-- 2.7
-- 3.4
-- 3.5
-- 3.6
-- pypy
-- pypy3
-- nightly
-env:
-- TOXENV=pytest36
-- TOXENV=pytest37
-- TOXENV=pytest38
 matrix:
   include:
+  # On Python 2 we test pytest 3 (minimum supported) and 4 (latest to support Python 2)
   - python: 2.7
-    env: TOXENV=flake8
+    env: TOXENV=py27-pytest3
+  - python: pypy
+    env: TOXENV=pypy-pytest3
+  - python: 2.7
+    env: TOXENV=py27-pytest4
+  - python: pypy
+    env: TOXENV=pypy-pytest4
+
+  # On Python 3.5+ we test pytest 3 (minimum supported) and 6 (latest)
   - python: 3.5
+    env: TOXENV=py35-pytest3
+  - python: 3.5
+    env: TOXENV=py35-pytest6
+
+  - python: 3.6
+    env: TOXENV=py36-pytest3
+  - python: 3.6
+    env: TOXENV=py36-pytest6
+
+  - python: 3.7
+    env: TOXENV=py37-pytest3
+  - python: 3.7
+    env: TOXENV=py37-pytest6
+
+  - python: 3.8
+    env: TOXENV=py38-pytest3
+  - python: 3.8
+    env: TOXENV=py38-pytest6
+
+  - python: 3.9
+    env: TOXENV=py39-pytest3
+  - python: 3.9
+    env: TOXENV=py39-pytest6
+
+  - python: pypy3
+    env: TOXENV=pypy3-pytest3
+  - python: pypy3
+    env: TOXENV=pypy3-pytest6
+
+  - python: 3.9
     env: TOXENV=flake8
 install:
 - pip install tox-travis
