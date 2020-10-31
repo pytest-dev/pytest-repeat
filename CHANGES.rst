@@ -1,7 +1,7 @@
 Release Notes
 -------------
 
-**0.9.0 (UNRELEASED)**
+**0.9.0 (2020-10-31)**
 
 * Using ``@pytest.mark.repeat(1)`` can now be used to disable repeating a test regardless of the ``--count`` parameter given in the command-line.
 
