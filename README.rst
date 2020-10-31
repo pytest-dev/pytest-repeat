@@ -10,6 +10,9 @@ easy to repeat a single test, or multiple tests, a specific number of times.
 .. image:: https://img.shields.io/pypi/v/pytest-repeat.svg
    :target: https://pypi.python.org/pypi/pytest-repeat/
    :alt: PyPI
+.. image:: https://img.shields.io/pypi/pyversions/pytest-repeat.svg
+   :target: https://pypi.org/project/pytest-repeat/
+   :alt: Python versions
 .. image:: https://img.shields.io/travis/pytest-dev/pytest-repeat.svg
    :target: https://travis-ci.org/pytest-dev/pytest-repeat/
    :alt: Travis
@@ -25,8 +28,8 @@ Requirements
 
 You will need the following prerequisites in order to use pytest-repeat:
 
-- Python 2.7, 3.4+ or PyPy
-- pytest 2.8 or newer
+- Python 2.7, 3.5+ or PyPy
+- pytest 3.6 or newer
 
 Installation
 ------------
