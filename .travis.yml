@@ -57,5 +57,5 @@ deploy:
   on:
     tags: true
     repo: pytest-dev/pytest-repeat
-    python: 3.5
-    condition: "$TOXENV = pytest38"
+    python: 3.8
+    condition: "$TOXENV = py38-pytest6"
