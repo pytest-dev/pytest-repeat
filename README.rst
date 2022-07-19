@@ -29,7 +29,7 @@ Requirements
 You will need the following prerequisites in order to use pytest-repeat:
 
 - Python 3.7+ or PyPy3
-- pytest 3.6 or newer
+- pytest 6 or newer
 
 Installation
 ------------

@@ -32,7 +32,7 @@ jobs:
 
       - name: Tox tests
         run: |
-          tox -e py
+          tox -e "py-pytest{6,7}"
 
   success:
     needs: test
