@@ -61,7 +61,7 @@ def pytest_generate_tests(metafunc):
         metafunc.fixturenames.append("__pytest_repeat_step_number")
 
         def make_progress_id(i, n=count):
-            return '{0}-{1}'.format(i + 1, n)
+            return f'{i + 1}-{n}'
 
         scope = metafunc.config.option.repeat_scope
         metafunc.parametrize(

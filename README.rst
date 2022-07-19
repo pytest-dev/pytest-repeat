@@ -1,5 +1,5 @@
 pytest-repeat
-===================
+=============
 
 pytest-repeat is a plugin for `pytest <https://docs.pytest.org>`_ that makes it
 easy to repeat a single test, or multiple tests, a specific number of times.
@@ -28,7 +28,7 @@ Requirements
 
 You will need the following prerequisites in order to use pytest-repeat:
 
-- Python 2.7, 3.5+ or PyPy
+- Python 3.7+ or PyPy3
 - pytest 3.6 or newer
 
 Installation

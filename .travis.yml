@@ -1,27 +1,7 @@
 language: python
 matrix:
   include:
-  # On Python 2 we test pytest 3 (minimum supported) and 4 (latest to support Python 2)
-  - python: 2.7
-    env: TOXENV=py27-pytest3
-  - python: pypy
-    env: TOXENV=pypy-pytest3
-  - python: 2.7
-    env: TOXENV=py27-pytest4
-  - python: pypy
-    env: TOXENV=pypy-pytest4
-
-  # On Python 3.5+ we test pytest 3 (minimum supported) and 6 (latest)
-  - python: 3.5
-    env: TOXENV=py35-pytest3
-  - python: 3.5
-    env: TOXENV=py35-pytest6
-
-  - python: 3.6
-    env: TOXENV=py36-pytest3
-  - python: 3.6
-    env: TOXENV=py36-pytest6
-
+  # On Python 3.7+ we test pytest 3 (minimum supported) and 6 (latest)
   - python: 3.7
     env: TOXENV=py37-pytest3
   - python: 3.7
