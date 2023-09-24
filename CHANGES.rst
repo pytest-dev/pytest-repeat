@@ -1,5 +1,9 @@
 Release Notes
 -------------
+**Unreleased**
+
+* Migrate CI to GitHub Actions
+* Officially Support Python 3.7+
 
 **0.9.1 (2020-10-31)**
 
