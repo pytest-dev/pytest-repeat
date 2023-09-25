@@ -8,3 +8,5 @@ dist
 *.egg-info
 *.pyc
 *.pyo
+.idea
+venv

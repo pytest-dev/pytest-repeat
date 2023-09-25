@@ -4,32 +4,34 @@ pytest-repeat
 pytest-repeat is a plugin for `pytest <https://docs.pytest.org>`_ that makes it
 easy to repeat a single test, or multiple tests, a specific number of times.
 
-.. image:: https://img.shields.io/badge/license-MPL%202.0-blue.svg
+|license| |python| |version| |anaconda| |ci| |issues|
+
+.. |license| image:: https://img.shields.io/badge/license-MPL%202.0-blue.svg
    :target: https://github.com/pytest-dev/pytest-repeat/blob/master/LICENSE
-   :alt: License
-.. image:: https://img.shields.io/pypi/v/pytest-repeat.svg
-   :target: https://pypi.python.org/pypi/pytest-repeat/
-   :alt: PyPI
-.. image:: https://img.shields.io/pypi/pyversions/pytest-repeat.svg
-   :target: https://pypi.org/project/pytest-repeat/
-   :alt: Python versions
-.. image:: https://img.shields.io/travis/pytest-dev/pytest-repeat.svg
-   :target: https://travis-ci.org/pytest-dev/pytest-repeat/
-   :alt: Travis
-.. image:: https://img.shields.io/github/issues-raw/pytest-dev/pytest-repeat.svg
+
+.. |version| image:: http://img.shields.io/pypi/v/pytest-repeat.svg
+  :target: https://pypi.python.org/pypi/pytest-repeat
+
+.. |anaconda| image:: https://img.shields.io/conda/vn/conda-forge/pytest-repeat.svg
+    :target: https://anaconda.org/conda-forge/pytest-repeat
+
+.. |ci| image:: https://github.com/pytest-dev/pytest-repeat/workflows/test/badge.svg
+  :target: https://github.com/pytest-dev/pytest-repeat/actions
+
+.. |python| image:: https://img.shields.io/pypi/pyversions/pytest-repeat.svg
+  :target: https://pypi.python.org/pypi/pytest-repeat/
+
+.. |issues| image:: https://img.shields.io/github/issues-raw/pytest-dev/pytest-repeat.svg
    :target: https://github.com/pytest-dev/pytest-repeat/issues
-   :alt: Issues
-.. image:: https://img.shields.io/requires/github/pytest-dev/pytest-repeat.svg
-   :target: https://requires.io/github/pytest-dev/pytest-repeat/requirements/?branch=master
-   :alt: Requirements
+
 
 Requirements
 ------------
 
 You will need the following prerequisites in order to use pytest-repeat:
 
-- Python 2.7, 3.5+ or PyPy
-- pytest 3.6 or newer
+- Python 3.7+ or PyPy3
+- pytest 4 or newer
 
 Installation
 ------------

@@ -1,0 +1,73 @@
+name: test
+
+on:
+  push:
+    branches:
+      - main
+      - "test-me-*"
+
+  pull_request:
+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and Check Package
+        uses: hynek/build-and-inspect-python-package@v1.5
+
+  test:
+
+    needs: [package]
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.7", "3.8", "3.9", "3.10", "3.11", "pypy3.9", "pypy3.10"]
+        os: [ubuntu-latest, windows-latest]
+        include:
+          - python: "3.7"
+            tox_env: "py37"
+          - python: "3.8"
+            tox_env: "py38"
+          - python: "3.9"
+            tox_env: "py39"
+          - python: "3.10"
+            tox_env: "py310"
+          - python: "3.11"
+            tox_env: "py311"
+          - python: "pypy3.9"
+            tox_env: "pypy3"
+          - python: "pypy3.10"
+            tox_env: "pypy3"
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Download Package
+      uses: actions/download-artifact@v3
+      with:
+        name: Packages
+        path: dist
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python }}
+
+    - name: Install tox
+      run: |
+        python -m pip install --upgrade pip
+        pip install tox
+
+    - name: Test
+      shell: bash
+      run: tox run -e ${{ matrix.tox_env }}
