@@ -1,6 +1,7 @@
 Release Notes
 -------------
-**Unreleased**
+
+**0.9.2 (2023-Oct-1)**
 
 * Migrate CI to GitHub Actions
 * Officially Support Python 3.7+
