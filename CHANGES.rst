@@ -1,6 +1,13 @@
 Release Notes
 -------------
 
+**0.9.3dev (unreleased)**
+
+* Add tox and CI testing on Python 3.12
+* Add legacy pytest versions to CI.
+  * Now testing pytest 4, 5, 6
+  * Non-legacy testing uses latest pytest, which is pytest 7
+
 **0.9.2 (2023-Oct-1)**
 
 * Migrate CI to GitHub Actions
