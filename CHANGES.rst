@@ -1,12 +1,16 @@
 Release Notes
 -------------
 
-**0.9.3dev (unreleased)**
+**0.9.3 (2023-Oct-9)**
 
-* Add tox and CI testing on Python 3.12
-* Add legacy pytest versions to CI.
+* No externally visible changes.
+* Internal changes. 
+  * Add tox and CI testing on Python 3.12
+  * Add legacy pytest versions to CI.
   * Now testing pytest 4, 5, 6
-  * Non-legacy testing uses latest pytest, which is pytest 7
+  * Non-legacy testing uses pytest 7
+  * setup.py -> pyproject.toml
+  * using hatchling backend
 
 **0.9.2 (2023-Oct-1)**
 
