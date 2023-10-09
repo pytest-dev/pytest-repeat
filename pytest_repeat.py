@@ -34,9 +34,8 @@ class UnexpectedError(Exception):
     pass
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture()
 def __pytest_repeat_step_number(request):
-    print('in repeat fixture')
     marker = request.node.get_closest_marker("repeat")
     count = marker and marker.args[0] or request.config.option.count
     if count > 1:
@@ -54,7 +53,6 @@ def __pytest_repeat_step_number(request):
 
 @pytest.hookimpl(trylast=True)
 def pytest_generate_tests(metafunc):
-    print('in generate tests')
     count = metafunc.config.option.count
     m = metafunc.definition.get_closest_marker('repeat')
     if m is not None:
