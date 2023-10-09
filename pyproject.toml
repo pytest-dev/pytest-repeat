@@ -35,5 +35,9 @@ repeat = "pytest_repeat"
 
 [build-system]
 requires = ["setuptools>=40.8.0", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
+
+[tool.setuptools]
+py-modules = ["pytest_repeat"]
