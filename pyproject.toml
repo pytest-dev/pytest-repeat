@@ -34,11 +34,12 @@ Home = "https://github.com/pytest-dev/pytest-repeat"
 [project.entry-points.pytest11]
 repeat = "pytest_repeat"
 
+
+
 [build-system]
-build-backend = "setuptools.build_meta"
-requires = [ "setuptools>=60", "setuptools_scm>=7"]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
-[tool.setuptools]
-py-modules = ["pytest_repeat"]
+[tool.hatch.version]
+source = "vcs"
 
-[tool.setuptools_scm]
