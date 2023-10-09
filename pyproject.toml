@@ -1,3 +1,45 @@
+[project]
+name = "pytest-repeat"
+description = "pytest plugin for repeating tests"
+readme = "README.rst"
+license = {file = "LICENSE"}
+authors = [{name = "Bob Silverberg"}]
+requires-python = ">=3.7"
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Framework :: Pytest",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+  "Operating System :: MacOS :: MacOS X",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: Software Development :: Testing",
+  "Topic :: Utilities",
+]
+dynamic = [ "version" ]
+dependencies = [ "pytest" ]
+
+[project.urls]
+Home = "https://github.com/pytest-dev/pytest-repeat"
+
+[project.entry-points.pytest11]
+repeat = "pytest_repeat"
+
+
+
 [build-system]
-requires = ["setuptools>=40.8.0", "wheel", "setuptools_scm"]
-build-backend = 'setuptools.build_meta'
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+

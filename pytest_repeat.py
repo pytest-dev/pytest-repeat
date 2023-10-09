@@ -34,7 +34,7 @@ class UnexpectedError(Exception):
     pass
 
 
-@pytest.fixture
+@pytest.fixture()
 def __pytest_repeat_step_number(request):
     marker = request.node.get_closest_marker("repeat")
     count = marker and marker.args[0] or request.config.option.count
