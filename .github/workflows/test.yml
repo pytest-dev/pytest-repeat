@@ -18,7 +18,7 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Build and Check Package
         uses: hynek/build-and-inspect-python-package@v1.5
 
@@ -50,7 +50,7 @@ jobs:
             tox_env: "pypy3-pytest7"
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Download Package
       uses: actions/download-artifact@v3
@@ -92,7 +92,7 @@ jobs:
             tox_env: "py37-pytest6"
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Download Package
         uses: actions/download-artifact@v3
