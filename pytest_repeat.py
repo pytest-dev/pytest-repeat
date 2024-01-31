@@ -8,14 +8,15 @@ import pytest
 
 
 def pytest_addoption(parser):
-    parser.addoption(
+    group = parser.getgroup('pytest-repeat')
+    group.addoption(
         '--count',
         action='store',
         default=1,
         type=int,
         help='Number of times to repeat each test')
 
-    parser.addoption(
+    group.addoption(
         '--repeat-scope',
         action='store',
         default='function',
