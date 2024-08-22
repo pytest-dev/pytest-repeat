@@ -28,6 +28,9 @@ def pytest_configure(config):
     config.addinivalue_line(
         'markers',
         'repeat(n): run the given test function `n` times.')
+    config.addinivalue_line(
+        'markers',
+        'norepeat: flag test to not be repeated.')
 
 
 class UnexpectedError(Exception):
@@ -57,7 +60,7 @@ def pytest_generate_tests(metafunc):
     m = metafunc.definition.get_closest_marker('repeat')
     if m is not None:
         count = int(m.args[0])
-    if count > 1:
+    if count > 1 and not metafunc.definition.get_closest_marker("norepeat"):
         metafunc.fixturenames.append("__pytest_repeat_step_number")
 
         def make_progress_id(i, n=count):

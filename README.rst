@@ -88,6 +88,32 @@ For example:
 This will attempt to run test_file.py 1000 times, but will stop as soon as a failure
 occurs.
 
+Ignoring a test for the repeat process
+--------------------------------------
+
+If you want to mark a test so it is ignored by the repeat process (so only ran once), you
+can use the :code:`@pytest.mark.norepeat` decorator:
+
+.. code-block:: python
+
+   import pytest
+
+
+   @pytest.mark.norepeat
+   def test_no_repeat_decorator():
+       pass
+
+   def test_repeat():
+       pass
+
+The following example would allow you to call for example:
+
+.. code-block:: bash
+
+  $ pytest --count=10 test_file.py
+
+and execute only :code:`test_repeat` 10 times and :code:`test_no_repeat_decorator` would only execute once.
+
 UnitTest Style Tests
 --------------------
 
