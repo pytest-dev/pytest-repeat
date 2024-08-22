@@ -269,3 +269,24 @@ class TestRepeat:
         """)
         result = testdir.runpytest('--count', '2', '--repeat-scope', 'a')
         assert result.ret == 4
+
+    def test_no_repeat_marker(self, testdir):
+        testdir.makepyfile("""
+            import pytest
+
+            @pytest.mark.norepeat
+            def test_no_repeat():
+                pass
+                           
+            def test_repeat():
+                pass               
+        """)
+
+        result = testdir.runpytest('-v', '--count', '2')
+        result.stdout.fnmatch_lines([
+            '*test_no_repeat_marker.py::test_no_repeat PASSED*',
+            '*test_no_repeat_marker.py::test_repeat[[]1-2[]] PASSED*',
+            '*test_no_repeat_marker.py::test_repeat[[]2-2[]] PASSED*',
+            '*3 passed*',
+        ])
+        assert result.ret == 0
