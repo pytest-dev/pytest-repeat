@@ -56,7 +56,7 @@ def pytest_generate_tests(metafunc):
     # Retrieve the configured count for repetitions
     count = metafunc.config.option.count
     
-    k_option = metafunc.config.getoption('k', None)
+    k_option = metafunc.config.option.keyword
 
     repeat_marker = metafunc.definition.get_closest_marker('repeat')
 
@@ -81,7 +81,7 @@ def pytest_generate_tests(metafunc):
             )
 
     if k_option:
-        if metafunc.definition.nodeid in metafunc.config._matchadd(k_option):
+        if k_option in metafunc.definition.nodeid:
             apply_repetition()
     else:
         apply_repetition()
