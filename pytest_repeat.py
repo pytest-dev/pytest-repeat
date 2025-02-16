@@ -53,21 +53,35 @@ def __pytest_repeat_step_number(request):
 
 @pytest.hookimpl(trylast=True)
 def pytest_generate_tests(metafunc):
+    # Retrieve the configured count for repetitions
     count = metafunc.config.option.count
-    m = metafunc.definition.get_closest_marker('repeat')
-    if m is not None:
-        count = int(m.args[0])
-    if count > 1:
-        metafunc.fixturenames.append("__pytest_repeat_step_number")
+    
+    k_option = metafunc.config.option.keyword
 
-        def make_progress_id(i, n=count):
-            return '{0}-{1}'.format(i + 1, n)
+    repeat_marker = metafunc.definition.get_closest_marker('repeat')
 
-        scope = metafunc.config.option.repeat_scope
-        metafunc.parametrize(
-            '__pytest_repeat_step_number',
-            range(count),
-            indirect=True,
-            ids=make_progress_id,
-            scope=scope
-        )
+    if repeat_marker is not None:
+        count = int(repeat_marker.args[0])
+
+    # function to add parameterization for test repetition
+    def apply_repetition():
+        if count > 1:
+            metafunc.fixturenames.append("__pytest_repeat_step_number")
+
+            def make_progress_id(i, n=count):
+                return '{0}-{1}'.format(i + 1, n)
+
+            scope = metafunc.config.option.repeat_scope
+            metafunc.parametrize(
+                '__pytest_repeat_step_number',
+                range(count),
+                indirect=True,
+                ids=make_progress_id,
+                scope=scope
+            )
+
+    if k_option:
+        if k_option in metafunc.definition.nodeid:
+            apply_repetition()
+    else:
+        apply_repetition()
