@@ -23,6 +23,14 @@ def pytest_addoption(parser):
         choices=('function', 'class', 'module', 'session'),
         help='Scope for repeating tests')
 
+    parser.addoption(
+        '--padding',
+        action='store',
+        type=str,
+        default=None,
+        help='Character to be used for padding and aligning test repetions'
+    )
+
 
 def pytest_configure(config):
     config.addinivalue_line(
@@ -60,8 +68,18 @@ def pytest_generate_tests(metafunc):
     if count > 1:
         metafunc.fixturenames.append("__pytest_repeat_step_number")
 
-        def make_progress_id(i, n=count):
-            return '{0}-{1}'.format(i + 1, n)
+        pad_char = metafunc.config.option.padding
+        if pad_char is not None and len(pad_char) != 1:
+            warnings.warn("Padding should be by a character only")
+        if pad_char is not None and len(pad_char) == 1:
+            n_digits = len(str(count))
+
+            def make_progress_id(i, n=count):
+                return f"{i + 1:{pad_char}>{n_digits}}-{n}"
+        else:
+
+            def make_progress_id(i, n=count):
+                return '{0}-{1}'.format(i + 1, n)
 
         scope = metafunc.config.option.repeat_scope
         metafunc.parametrize(

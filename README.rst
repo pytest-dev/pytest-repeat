@@ -88,6 +88,39 @@ For example:
 This will attempt to run test_file.py 1000 times, but will stop as soon as a failure
 occurs.
 
+Padding test iteration count
+----------------------------
+
+Use the :code:`--padding` command line option to specify the character to be used
+to pad the test iteration number, i.e. by prepending a :code:`0` or a space.
+This feature helps sorting the results in a generated report, i.e. the one made by
+pytest-html.
+
+.. code-block:: bash
+
+  $ pytest --count=10 --padding=" " test_file.py
+
+  ============================ test session starts ============================
+  [...]
+  test_file.py ..........                                               [100%]
+
+  ================================== PASSES ===================================
+  ========================== short test summary info ==========================
+  PASSED test_file.py::test_do_nothing[ 1-10]
+  PASSED test_file.py::test_do_nothing[ 2-10]
+  PASSED test_file.py::test_do_nothing[ 3-10]
+  PASSED test_file.py::test_do_nothing[ 4-10]
+  PASSED test_file.py::test_do_nothing[ 5-10]
+  PASSED test_file.py::test_do_nothing[ 6-10]
+  PASSED test_file.py::test_do_nothing[ 7-10]
+  PASSED test_file.py::test_do_nothing[ 8-10]
+  PASSED test_file.py::test_do_nothing[ 9-10]
+  PASSED test_file.py::test_do_nothing[10-10]
+  ============================ 10 passed in 0.02s =============================
+
+If more than one character is given, the setting is ignored.
+
+
 UnitTest Style Tests
 --------------------
 
