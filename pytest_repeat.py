@@ -24,7 +24,7 @@ def pytest_addoption(parser):
         help='Scope for repeating tests')
 
     parser.addoption(
-        '--padding',
+        '--repeat-pad',
         action='store',
         type=str,
         default=None,
@@ -68,7 +68,7 @@ def pytest_generate_tests(metafunc):
     if count > 1:
         metafunc.fixturenames.append("__pytest_repeat_step_number")
 
-        pad_char = metafunc.config.option.padding
+        pad_char = metafunc.config.option.repeat_pad
         if pad_char is not None and len(pad_char) != 1:
             warnings.warn("Padding should be by a character only")
         if pad_char is not None and len(pad_char) == 1:

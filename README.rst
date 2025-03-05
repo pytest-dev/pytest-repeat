@@ -98,7 +98,7 @@ pytest-html.
 
 .. code-block:: bash
 
-  $ pytest --count=10 --padding=" " test_file.py
+  $ pytest --count=10 --repeat-pad=" " test_file.py
 
   ============================ test session starts ============================
   [...]
