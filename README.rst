@@ -91,7 +91,7 @@ occurs.
 Padding test iteration count
 ----------------------------
 
-Use the :code:`--padding` command line option to specify the character to be used
+Use the :code:`--repeat-pad` command line option to specify the character to be used
 to pad the test iteration number, i.e. by prepending a :code:`0` or a space.
 This feature helps sorting the results in a generated report, i.e. the one made by
 pytest-html.
