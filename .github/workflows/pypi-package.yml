@@ -10,6 +10,9 @@ permissions:
   contents: read
   id-token: write
 
+env:
+  FORCE_COLOR: 1
+
 jobs:
   build-package:
     name: Build & verify package
