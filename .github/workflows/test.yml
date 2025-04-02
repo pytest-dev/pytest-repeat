@@ -31,13 +31,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "pypy3.10"]
+        python: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "pypy3.10"]
         os: [ubuntu-latest, windows-latest]
         include:
-          - python: "3.7"
-            tox_env: "py37-pytest7"
-          - python: "3.8"
-            tox_env: "py38-pytest7"
           - python: "3.9"
             tox_env: "py39-pytest7"
           - python: "3.10"
@@ -90,11 +86,11 @@ jobs:
         pytest: ["4", "5", "6"]
         include:
           - pytest: "4"
-            tox_env: "py37-pytest4"
+            tox_env: "py39-pytest4"
           - pytest: "5"
-            tox_env: "py37-pytest5"
+            tox_env: "py39-pytest5"
           - pytest: "6"
-            tox_env: "py37-pytest6"
+            tox_env: "py39-pytest6"
 
     steps:
       - uses: actions/checkout@v4
@@ -108,7 +104,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.7"
+          python-version: "3.9"
 
       - name: Install tox
         run: |
