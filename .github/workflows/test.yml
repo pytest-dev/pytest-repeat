@@ -35,19 +35,19 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         include:
           - python: "3.9"
-            tox_env: "py39-pytest7"
+            tox_env: "py39-pytest8"
           - python: "3.10"
-            tox_env: "py310-pytest7"
+            tox_env: "py310-pytest8"
           - python: "3.11"
-            tox_env: "py311-pytest7"
+            tox_env: "py311-pytest8"
           - python: "3.12"
-            tox_env: "py312-pytest7"
+            tox_env: "py312-pytest8"
           - python: "3.13"
-            tox_env: "py313-pytest7"
+            tox_env: "py313-pytest8"
           - python: "3.14"
-            tox_env: "py314-pytest7"
+            tox_env: "py314-pytest8"
           - python: "pypy3.10"
-            tox_env: "pypy3-pytest7"
+            tox_env: "pypy3-pytest8"
 
     steps:
     - uses: actions/checkout@v4
@@ -83,14 +83,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pytest: ["4", "5", "6"]
+        pytest: ["5", "6", "7"]
         include:
-          - pytest: "4"
-            tox_env: "py39-pytest4"
           - pytest: "5"
             tox_env: "py39-pytest5"
           - pytest: "6"
             tox_env: "py39-pytest6"
+          - pytest: "7"
+            tox_env: "py39-pytest7"
 
     steps:
       - uses: actions/checkout@v4
