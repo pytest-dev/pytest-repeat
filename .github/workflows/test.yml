@@ -8,6 +8,8 @@ on:
 
   pull_request:
 
+env:
+  FORCE_COLOR: 1
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -31,23 +33,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "pypy3.10"]
+        python: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "pypy3.10"]
         os: [ubuntu-latest, windows-latest]
         include:
-          - python: "3.7"
-            tox_env: "py37-pytest7"
-          - python: "3.8"
-            tox_env: "py38-pytest7"
           - python: "3.9"
-            tox_env: "py39-pytest7"
+            tox_env: "py39-pytest8"
           - python: "3.10"
-            tox_env: "py310-pytest7"
+            tox_env: "py310-pytest8"
           - python: "3.11"
-            tox_env: "py311-pytest7"
+            tox_env: "py311-pytest8"
           - python: "3.12"
-            tox_env: "py312-pytest7"
+            tox_env: "py312-pytest8"
+          - python: "3.13"
+            tox_env: "py313-pytest8"
+          - python: "3.14"
+            tox_env: "py314-pytest8"
           - python: "pypy3.10"
-            tox_env: "pypy3-pytest7"
+            tox_env: "pypy3-pytest8"
 
     steps:
     - uses: actions/checkout@v4
@@ -62,6 +64,7 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python }}
+        allow-prereleases: true
 
     - name: Install tox
       run: |
@@ -82,14 +85,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pytest: ["4", "5", "6"]
+        pytest: ["5", "6", "7"]
         include:
-          - pytest: "4"
-            tox_env: "py37-pytest4"
           - pytest: "5"
-            tox_env: "py37-pytest5"
+            tox_env: "py39-pytest5"
           - pytest: "6"
-            tox_env: "py37-pytest6"
+            tox_env: "py39-pytest6"
+          - pytest: "7"
+            tox_env: "py39-pytest7"
 
     steps:
       - uses: actions/checkout@v4
@@ -103,7 +106,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.7"
+          python-version: "3.9"
 
       - name: Install tox
         run: |
