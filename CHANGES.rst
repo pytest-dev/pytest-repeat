@@ -1,6 +1,14 @@
 Release Notes
 -------------
 
+**0.9.4 (2025-Apr-5)**
+
+* Additions
+  * Add tox and CI testing on Python 3.13, 3.14
+  * Add color to GitHub Actions output
+* Removals
+  * Remove support for Python 3.7, 3.8, as they are EOL
+
 **0.9.3 (2023-Oct-9)**
 
 * No externally visible changes.
