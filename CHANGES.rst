@@ -1,6 +1,11 @@
 Release Notes
 -------------
 
+**Unreleased (2026-ХХХ-ХХ)**
+
+* Removals
+  * Remove support for Python 3.9, as they are EOL
+
 **0.9.4 (2025-Apr-5)**
 
 * Additions

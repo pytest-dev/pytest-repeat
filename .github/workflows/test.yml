@@ -33,11 +33,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "pypy3.10"]
+        python: ["3.10", "3.11", "3.12", "3.13", "3.14", "pypy3.10"]
         os: [ubuntu-latest, windows-latest]
         include:
-          - python: "3.9"
-            tox_env: "py39-pytest8"
           - python: "3.10"
             tox_env: "py310-pytest8"
           - python: "3.11"
@@ -61,7 +59,7 @@ jobs:
         path: dist
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python }}
         allow-prereleases: true
@@ -85,14 +83,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pytest: ["5", "6", "7"]
+        pytest: ["7"]
         include:
-          - pytest: "5"
-            tox_env: "py39-pytest5"
-          - pytest: "6"
-            tox_env: "py39-pytest6"
           - pytest: "7"
-            tox_env: "py39-pytest7"
+            tox_env: "py310-pytest7"
 
     steps:
       - uses: actions/checkout@v4
@@ -104,9 +98,9 @@ jobs:
           path: dist
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.9"
+          python-version: "3.10"
 
       - name: Install tox
         run: |
