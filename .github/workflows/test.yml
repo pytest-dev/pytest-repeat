@@ -25,6 +25,7 @@ jobs:
         uses: hynek/build-and-inspect-python-package@v2
 
   test:
+    name: tests (Python ${{ matrix.python }}, pytest ${{ matrix.pytest }})
 
     needs: [package]
 
@@ -74,6 +75,7 @@ jobs:
 
 
   test-legacy-pytest:
+    name: legacy-tests (Python ${{ matrix.python }}, pytest ${{ matrix.pytest }})
 
     needs: [package]    
     runs-on: ubuntu-latest
