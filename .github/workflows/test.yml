@@ -25,31 +25,29 @@ jobs:
         uses: hynek/build-and-inspect-python-package@v2
 
   test:
+    name: tests (Python ${{ matrix.python }}, pytest ${{ matrix.pytest }})
 
     needs: [package]
 
     runs-on: ${{ matrix.os }}
-
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "pypy3.10"]
         os: [ubuntu-latest, windows-latest]
+        pytest: ["9"]
         include:
-          - python: "3.9"
-            tox_env: "py39-pytest8"
           - python: "3.10"
-            tox_env: "py310-pytest8"
+            tox_env: "py310-pytest9"
           - python: "3.11"
-            tox_env: "py311-pytest8"
+            tox_env: "py311-pytest9"
           - python: "3.12"
-            tox_env: "py312-pytest8"
+            tox_env: "py312-pytest9"
           - python: "3.13"
-            tox_env: "py313-pytest8"
+            tox_env: "py313-pytest9"
           - python: "3.14"
-            tox_env: "py314-pytest8"
+            tox_env: "py314-pytest9"
           - python: "pypy3.10"
-            tox_env: "pypy3-pytest8"
+            tox_env: "pypy3-pytest9"
 
     steps:
     - uses: actions/checkout@v4
@@ -77,22 +75,45 @@ jobs:
 
 
   test-legacy-pytest:
+    name: legacy-tests (Python ${{ matrix.python }}, pytest ${{ matrix.pytest }})
 
-    needs: [package]
-
+    needs: [package]    
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        pytest: ["5", "6", "7"]
         include:
           - pytest: "5"
+            python: "3.9"
             tox_env: "py39-pytest5"
           - pytest: "6"
+            python: "3.9"
             tox_env: "py39-pytest6"
           - pytest: "7"
+            python: "3.9"
             tox_env: "py39-pytest7"
+          - pytest: "8"
+            python: "3.9"
+            tox_env: "py39-pytest8"
+          - pytest: "8"
+            python: "3.10"
+            tox_env: "py310-pytest8"
+          - pytest: "8"
+            python: "3.11"
+            tox_env: "py311-pytest8"
+          - pytest: "8"
+            python: "3.12"
+            tox_env: "py312-pytest8"
+          - pytest: "8"
+            python: "3.13"
+            tox_env: "py313-pytest8"
+          - pytest: "8"
+            python: "3.14"
+            tox_env: "py314-pytest8"
+          - pytest: "8"
+            python: "pypy3.10"
+            tox_env: "pypy3-pytest8"
 
     steps:
       - uses: actions/checkout@v4
@@ -106,7 +127,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.9"
+          python-version: ${{ matrix.python }}
 
       - name: Install tox
         run: |
