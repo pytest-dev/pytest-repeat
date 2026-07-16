@@ -53,6 +53,11 @@ your test, or tests, to be run:
 
 Each test collected by pytest will be run :code:`count` times.
 
+Collection filtering, including :code:`-k` and :code:`-m`, is applied before
+the selected tests are expanded for repetition. Filters therefore match the
+original test IDs rather than generated repeat suffixes such as
+:code:`[1-10]`.
+
 If you want to mark a test in your code to be repeated a number of times, you
 can use the :code:`@pytest.mark.repeat(count)` decorator:
 

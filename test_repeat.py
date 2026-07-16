@@ -92,6 +92,104 @@ class TestRepeat:
         result.stdout.fnmatch_lines(['*6 passed*'])
         assert result.ret == 0
 
+    def test_repeat_after_deselect(self, testdir):
+        testdir.makeconftest("""
+            collected = 0
+
+            def pytest_itemcollected(item):
+                global collected
+                collected += 1
+
+            def pytest_collection_finish(session):
+                final = len(session.items)
+                print(f'ITEMS: collected={collected}, final={final}')
+        """)
+        testdir.makepyfile("""
+            def test_keep():
+                pass
+
+            def test_drop():
+                pass
+        """)
+        result = testdir.runpytest('-q', '--count', '3', '-k', 'keep')
+        result.stdout.fnmatch_lines([
+            '*ITEMS: collected=2, final=3*',
+            '*3 passed, 1 deselected*',
+        ])
+        assert result.ret == 0
+
+    def test_collection_plugins_only_see_original_items(self, testdir):
+        testdir.makeconftest("""
+            def pytest_collection_modifyitems(items):
+                print(f'MODIFY ITEMS: {len(items)}')
+        """)
+        testdir.makepyfile("""
+            def test_one():
+                pass
+
+            def test_two():
+                pass
+        """)
+        result = testdir.runpytest('-q', '--count', '3')
+        result.stdout.fnmatch_lines([
+            '*MODIFY ITEMS: 2*',
+            '*6 passed*',
+        ])
+        assert result.ret == 0
+
+    def test_repeated_items_have_unique_nodeids(self, testdir):
+        testdir.makeconftest("""
+            def pytest_collection_finish(session):
+                nodeids = [item.nodeid for item in session.items]
+                assert len(nodeids) == len(set(nodeids))
+        """)
+        testdir.makepyfile("""
+            def test_repeat():
+                pass
+        """)
+        result = testdir.runpytest('--count', '3', '--collect-only', '-q')
+        result.stdout.fnmatch_lines([
+            '*::test_repeat[[]1-3[]]*',
+            '*::test_repeat[[]2-3[]]*',
+            '*::test_repeat[[]3-3[]]*',
+            '*3 tests collected*',
+        ])
+        assert result.ret == 0
+
+    def test_function_fixture_isolated_per_repeat(self, testdir):
+        testdir.makepyfile("""
+            import pytest
+
+            active = set()
+
+            @pytest.fixture
+            def resource(request):
+                nodeid = request.node.nodeid
+                assert nodeid not in active
+                active.add(nodeid)
+                yield nodeid
+                active.remove(nodeid)
+
+            def test_repeat(resource, request):
+                assert resource == request.node.nodeid
+        """)
+        result = testdir.runpytest('--count', '3')
+        result.stdout.fnmatch_lines(['*3 passed*'])
+        assert result.ret == 0
+
+    def test_xdist(self, testdir):
+        pytest.importorskip('xdist')
+        testdir.makepyfile("""
+            def test_one():
+                pass
+
+            def test_two():
+                pass
+        """)
+        result = testdir.runpytest_subprocess('-n', '2', '--count', '3')
+        result.stdout.fnmatch_lines(['*6 passed*'])
+        assert result.ret == 0
+
     def test_step_number(self, testdir):
         testdir.makepyfile("""
             import pytest

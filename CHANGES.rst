@@ -1,6 +1,13 @@
 Release Notes
 -------------
 
+**Unreleased**
+
+* Repeat tests after collection filtering instead of parametrizing them during
+  collection. This avoids multiplying collection hook work by ``--count``.
+* Preserve unique repeat node IDs and xdist distribution after the new
+  post-collection expansion.
+
 **0.9.4 (2025-Apr-5)**
 
 * Additions
