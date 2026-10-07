@@ -51,7 +51,7 @@ your test, or tests, to be run:
 
   $ pytest --count=10 test_file.py
 
-Each test collected by pytest will be run :code:`count` times.
+Each pytest test function collected by pytest will be run :code:`count` times.
 
 If you want to mark a test in your code to be repeated a number of times, you
 can use the :code:`@pytest.mark.repeat(count)` decorator:
@@ -87,6 +87,13 @@ For example:
 
 This will attempt to run test_file.py 1000 times, but will stop as soon as a failure
 occurs.
+
+Doctests
+--------
+
+Doctests run once, even when :code:`--count` is greater than one. This applies
+to doctests collected from Python modules or text files. In a mixed suite,
+pytest test functions still repeat as usual.
 
 UnitTest Style Tests
 --------------------
