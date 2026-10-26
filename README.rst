@@ -73,6 +73,37 @@ It behaves like a scope of the pytest fixture.
 :code:`session` scope repeats whole tests session, i.e. all collected tests executed once, then all such tests executed again and etc.
 :code:`class` and :code:`module` behaves similar :code:`session` , but repeating set of tests is a tests from class or module, not all collected tests.
 
+Repeating a single parameterized case
+-------------------------------------
+
+Repeating a parameterized test adds the repetition number to each test ID.
+For example, given :code:`test_param.py`:
+
+.. code-block:: python
+
+   import pytest
+
+
+   @pytest.mark.parametrize("value", [10, 20])
+   def test_value(value):
+       assert value > 0
+
+With :code:`--count=3`, the case :code:`test_value[10]` becomes
+:code:`test_value[10-1-3]`, :code:`test_value[10-2-3]`, and
+:code:`test_value[10-3-3]`. Selecting the original node ID
+:code:`test_param.py::test_value[10]` therefore no longer matches a test.
+
+Select the test function and use pytest's :code:`-k` option to match the
+parameterized IDs instead:
+
+.. code-block:: bash
+
+  $ pytest test_param.py::test_value --count=3 -k "test_value[10-"
+
+This runs the three repetitions for :code:`value=10` and deselects the three
+for :code:`value=20`. The expression is a substring match on the test IDs;
+choose a substring that distinguishes the case you want.
+
 Repeating a test until failure
 ------------------------------
 
