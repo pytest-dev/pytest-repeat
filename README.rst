@@ -51,7 +51,11 @@ your test, or tests, to be run:
 
   $ pytest --count=10 test_file.py
 
-Each test collected by pytest will be run :code:`count` times.
+Each pytest test function will be run :code:`count` times.
+
+Doctests are not repeated. Doctests collected from Python modules with
+:code:`--doctest-modules` or from text files run once, regardless of
+:code:`--count`.
 
 If you want to mark a test in your code to be repeated a number of times, you
 can use the :code:`@pytest.mark.repeat(count)` decorator:
